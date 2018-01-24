@@ -103,21 +103,29 @@
 <li>get参数直接暴露在url上，不能传递敏感信息</li>
 <li>get通过url传递，post放在request body中</li>
 </ul>
-<h2 id="HTTP状态码"><a href="#HTTP状态码" class="headerlink" title="HTTP状态码"></a>HTTP状态码</h2><h6 id="1xx-指示信息-请求已接收"><a href="#1xx-指示信息-请求已接收" class="headerlink" title="1xx: 指示信息 - 请求已接收"></a>1xx: 指示信息 - 请求已接收</h6><h6 id="2xx-成功-请求被成功接收"><a href="#2xx-成功-请求被成功接收" class="headerlink" title="2xx: 成功 - 请求被成功接收"></a>2xx: 成功 - 请求被成功接收</h6><blockquote>
+<h2 id="HTTP状态码"><a href="#HTTP状态码" class="headerlink" title="HTTP状态码"></a>HTTP状态码</h2><h4 id="1xx-指示信息-请求已接收"><a href="#1xx-指示信息-请求已接收" class="headerlink" title="1xx: 指示信息 - 请求已接收"></a>1xx: 指示信息 - 请求已接收</h4><h4 id="2xx-成功-请求被成功接收"><a href="#2xx-成功-请求被成功接收" class="headerlink" title="2xx: 成功 - 请求被成功接收"></a>2xx: 成功 - 请求被成功接收</h4><blockquote>
 <ul>
 <li>200 OK</li>
 <li>206 Partiaml Content 客户端发送了一个带Range头多get请求，服务器完成了它(音频、视频应用)</li>
 </ul>
 </blockquote>
-<h6 id="3xx-重定向"><a href="#3xx-重定向" class="headerlink" title="3xx: 重定向"></a>3xx: 重定向</h6><blockquote>
+<h4 id="3xx-重定向"><a href="#3xx-重定向" class="headerlink" title="3xx: 重定向"></a>3xx: 重定向</h4><blockquote>
 <ul>
 <li>301 Moved Permanently 所请求的资源已经转移至新的url地址</li>
 <li>302 Found 所请求的资源临时转移至新url地址</li>
-<li>304 Not Modified 客户端有缓存的文档并发出了一个条件性请求，服务器告诉客户端原来缓存的资源文件可以继续使用<h6 id="4xx-客户端错误"><a href="#4xx-客户端错误" class="headerlink" title="4xx: 客户端错误"></a>4xx: 客户端错误</h6></li>
+<li>304 Not Modified 客户端有缓存的文档并发出了一个条件性请求，服务器告诉客户端原来缓存的资源文件可以继续使用</li>
+</ul>
+</blockquote>
+<h4 id="4xx-客户端错误"><a href="#4xx-客户端错误" class="headerlink" title="4xx: 客户端错误"></a>4xx: 客户端错误</h4><blockquote>
+<ul>
 <li>400 Bad Request 客户端存在语法错误，服务器无法理解</li>
 <li>401 Unauthorized 请求未授权 必须和www-Authenticate 报头域一起使用(JWT鉴权应用)</li>
 <li>403 Forbidden 请求被禁止访问(只能通过服务器端访问)</li>
-<li>404 Not Found 请求的资源不存在<h6 id="5xx-服务器错误"><a href="#5xx-服务器错误" class="headerlink" title="5xx: 服务器错误"></a>5xx: 服务器错误</h6></li>
+<li>404 Not Found 请求的资源不存在</li>
+</ul>
+</blockquote>
+<h4 id="5xx-服务器错误"><a href="#5xx-服务器错误" class="headerlink" title="5xx: 服务器错误"></a>5xx: 服务器错误</h4><blockquote>
+<ul>
 <li>500 Internal server Error 服务器错误</li>
 <li>503 Server Unavailable 请求未完成或服务器临时过载当机</li>
 </ul>
