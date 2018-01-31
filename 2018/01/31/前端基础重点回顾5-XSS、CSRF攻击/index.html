@@ -67,7 +67,12 @@
             </header>
             
             <div class="article-body">
-                <h2 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h2><blockquote>
+                <h2 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h2><h5 id="攻击前提"><a href="#攻击前提" class="headerlink" title="攻击前提"></a>攻击前提</h5><blockquote>
+<ul>
+<li>攻击脚本必须添加到页面上</li>
+</ul>
+</blockquote>
+<h5 id="攻击方式"><a href="#攻击方式" class="headerlink" title="攻击方式"></a>攻击方式</h5><blockquote>
 <ul>
 <li>跨站脚本XSS(Cross site script) 代码注入</li>
 <li>script 标签注入攻击 <code>&lt;li&gt;&lt;script&gt;alert(1)&lt;/script&gt;&lt;/li&gt;</code></li>
@@ -75,8 +80,7 @@
 <li>广告注入 <code>&lt;iframe src=&#39;&#39;&gt;&lt;/iframe&gt;</code></li>
 </ul>
 </blockquote>
-<p>防止XSS攻击</p>
-<blockquote>
+<h5 id="防止XSS攻击"><a href="#防止XSS攻击" class="headerlink" title="防止XSS攻击"></a>防止XSS攻击</h5><blockquote>
 <ul>
 <li>获取的数据不允许进行字符串拼接</li>
 <li>使用element.inneText方法 把数据添加到dom 中，inneText 方法会转义所有内容</li>
@@ -86,14 +90,19 @@
 </ul>
 </blockquote>
 <h2 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h2><p><img src="http://upload-images.jianshu.io/upload_images/2155778-617054f296163894.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<blockquote>
+<h5 id="攻击原理"><a href="#攻击原理" class="headerlink" title="攻击原理"></a>攻击原理</h5><blockquote>
+<ul>
+<li>利用用户已经登录的状态 伪造请求发送给服务器进行用户操作</li>
+</ul>
+</blockquote>
+<h5 id="攻击方式-1"><a href="#攻击方式-1" class="headerlink" title="攻击方式"></a>攻击方式</h5><blockquote>
 <ul>
 <li>跨站请求伪造(Cross site request forgery)</li>
 <li>用户已登录(cookie登录)<code>如果没设置httpOnly cookie是根据域名和路径访问的, 无关端口</code></li>
-<li>伪造请求(GET, POST)</li>
+<li>伪造请求(GET, POST)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">##### 伪造GET</span><br><span class="line">&lt;img src=&quot;http://localhost:3000/csrf?data=111&quot; alt=&quot;&quot;&gt;</span><br><span class="line">http://localhost:3000/csrf?data=111 // 直接地址栏中输入</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">伪造GET</span><br><span class="line">&lt;img src=&quot;http://localhost:3000/csrf?data=111&quot; alt=&quot;&quot;&gt;</span><br><span class="line">http://localhost:3000/csrf?data=111 // 直接地址栏中输入</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">表单伪造POST</span><br><span class="line">    &lt;form id=&quot;form&quot; style=&quot;display: none;&quot; action=&quot;http://localhost:3000/csrf?data=111&quot; method=&quot;post&quot; target=&quot;csrf&quot;&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line">    &lt;input id=&quot;btn&quot; type=&quot;button&quot; value=&quot;submit&quot;&gt;</span><br><span class="line">    &lt;iframe src=&quot;&quot; style=&quot;display: none;&quot; name=&quot;csrf&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">      btn.addEventListener(&apos;click&apos;, (e) =&gt; &#123;</span><br><span class="line">        e.preventDefault()</span><br><span class="line">        form.submit()</span><br><span class="line">      &#125;)</span><br><span class="line">    &lt;/script&gt;</span><br></pre></td></tr></table></figure>
 <p>防止CSRF攻击</p>
 <blockquote>
