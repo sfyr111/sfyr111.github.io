@@ -99,7 +99,7 @@
 <ul>
 <li>跨站请求伪造(Cross site request forgery)</li>
 <li>用户已登录(cookie登录)<code>如果没设置httpOnly cookie是根据域名和路径访问的, 无关端口</code></li>
-<li>伪造请求(GET, POST)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">##### 伪造GET</span><br><span class="line">&lt;img src=&quot;http://localhost:3000/csrf?data=111&quot; alt=&quot;&quot;&gt;</span><br><span class="line">http://localhost:3000/csrf?data=111 // 直接地址栏中输入</span><br></pre></td></tr></table></figure>
+<li>伪造请求(GET, POST)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">伪造GET</span><br><span class="line">&lt;img src=&quot;http://localhost:3000/csrf?data=111&quot; alt=&quot;&quot;&gt;</span><br><span class="line">http://localhost:3000/csrf?data=111 // 直接地址栏中输入</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </blockquote>
