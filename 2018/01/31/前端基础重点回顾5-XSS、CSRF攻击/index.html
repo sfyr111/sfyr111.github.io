@@ -90,10 +90,10 @@
 <ul>
 <li>跨站请求伪造(Cross site request forgery)</li>
 <li>用户已登录(cookie登录)<code>如果没设置httpOnly cookie是根据域名和路径访问的, 无关端口</code></li>
-<li>伪造请求(GET, POST)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">伪造GET</span><br><span class="line">&lt;img src=&quot;http://localhost:3000/csrf?data=111&quot; alt=&quot;&quot;&gt;</span><br><span class="line">http://localhost:3000/csrf?data=111 // 直接地址栏中输入</span><br></pre></td></tr></table></figure>
-</li>
+<li>伪造请求(GET, POST)</li>
 </ul>
 </blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">伪造GET</span><br><span class="line">&lt;img src=&quot;http://localhost:3000/csrf?data=111&quot; alt=&quot;&quot;&gt;</span><br><span class="line">http://localhost:3000/csrf?data=111 // 直接地址栏中输入</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">表单伪造POST</span><br><span class="line">    &lt;form id=&quot;form&quot; style=&quot;display: none;&quot; action=&quot;http://localhost:3000/csrf?data=111&quot; method=&quot;post&quot; target=&quot;csrf&quot;&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line">    &lt;input id=&quot;btn&quot; type=&quot;button&quot; value=&quot;submit&quot;&gt;</span><br><span class="line">    &lt;iframe src=&quot;&quot; style=&quot;display: none;&quot; name=&quot;csrf&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">      btn.addEventListener(&apos;click&apos;, (e) =&gt; &#123;</span><br><span class="line">        e.preventDefault()</span><br><span class="line">        form.submit()</span><br><span class="line">      &#125;)</span><br><span class="line">    &lt;/script&gt;</span><br></pre></td></tr></table></figure>
 <p>防止CSRF攻击</p>
 <blockquote>
