@@ -10,7 +10,7 @@
     <link rel="alternative" href="/atom.xml" title="Minimalist" type="application/atom+xml">
     
     
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="../../../../css/style.css">
 
     
     <link rel="stylesheet" href="/libs/fancybox/jquery.fancybox.css" charset="utf-8">
@@ -22,7 +22,7 @@
 <meta name="generator" content="Hexo 6.3.0"></head>
 <body class="site">
     <header class="site-header">
-        <h1 class="site-title"><a href="/">Minimalist</a></h1>
+        <h1 class="site-title"><a href="../../../../index.html">Minimalist</a></h1>
         <nav class="site-nav">
             <ul class="nav">
                 
@@ -49,21 +49,21 @@
             
             <header class="article-header">
                 <div class="article-meta">
-                    <a href="/2018/01/31/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E9%87%8D%E7%82%B9%E5%9B%9E%E9%A1%BE5-XSS%E3%80%81CSRF%E6%94%BB%E5%87%BB/" class="article-date">
+                    <a href="" class="article-date">
   <time datetime="2018-01-31T09:01:53.000Z">2018-01-31</time>
 </a>
                     
   <div class="article-category categories">
-    <a class="category-link" href="/categories/Font-End-Basis/">Font-End Basis</a>
+    <a class="category-link" href="../../../../categories/Font-End-Basis/">Font-End Basis</a>
   </div>
 
                     
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/" rel="tag">http</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/http/" rel="tag">http</a></li></ul>
 
                 </div>
                 
     <h1 class="article-title" itemprop="name">
-      <a href="/2018/01/31/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E9%87%8D%E7%82%B9%E5%9B%9E%E9%A1%BE5-XSS%E3%80%81CSRF%E6%94%BB%E5%87%BB/">前端基础重点回顾5:XSS、CSRF攻击</a>
+      <a href="">前端基础重点回顾5:XSS、CSRF攻击</a>
     </h1>
 
             </header>
@@ -91,7 +91,7 @@
 <li>防止URL 上的参数在页面上展示 <code>http://url?code=&lt;p onclick=&quot;alert(2)&quot;&gt;诱导点击&lt;/p&gt;</code> 这里的code query参数内容不得在页面中渲染</li>
 </ul>
 </blockquote>
-<h2 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h2><p><img src="http://upload-images.jianshu.io/upload_images/2155778-617054f296163894.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h2><p><img src="http://upload-images.jianshu.io/upload_images/2155778-617054f296163894.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
 <h5 id="攻击原理"><a href="#攻击原理" class="headerlink" title="攻击原理"></a>攻击原理</h5><blockquote>
 <ul>
 <li>利用用户已经登录的状态 伪造请求发送给服务器进行用户操作</li>
@@ -101,11 +101,12 @@
 <ul>
 <li>跨站请求伪造(Cross site request forgery)</li>
 <li>用户已登录(cookie登录)<code>如果没设置httpOnly cookie是根据域名和路径访问的, 无关端口</code></li>
-<li>伪造请求(GET, POST)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">伪造GET</span><br><span class="line">&lt;img src=&quot;http://localhost:3000/csrf?data=111&quot; alt=&quot;&quot;&gt;</span><br><span class="line">http://localhost:3000/csrf?data=111 // 直接地址栏中输入</span><br></pre></td></tr></table></figure>
-</li>
+<li>伪造请求(GET, POST)</li>
 </ul>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">表单伪造POST</span><br><span class="line">    &lt;form id=&quot;form&quot; style=&quot;display: none;&quot; action=&quot;http://localhost:3000/csrf?data=111&quot; method=&quot;post&quot; target=&quot;csrf&quot;&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line">    &lt;input id=&quot;btn&quot; type=&quot;button&quot; value=&quot;submit&quot;&gt;</span><br><span class="line">    &lt;iframe src=&quot;&quot; style=&quot;display: none;&quot; name=&quot;csrf&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">      btn.addEventListener(&apos;click&apos;, (e) =&gt; &#123;</span><br><span class="line">        e.preventDefault()</span><br><span class="line">        form.submit()</span><br><span class="line">      &#125;)</span><br><span class="line">    &lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">伪造GET</span><br><span class="line">&lt;img src=&quot;http://localhost:3000/csrf?data=111&quot; alt=&quot;&quot;&gt;</span><br><span class="line">http://localhost:3000/csrf?data=111 // 直接地址栏中输入</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">表单伪造POST</span><br><span class="line">    &lt;form id=&quot;form&quot; style=&quot;display: none;&quot; action=&quot;http://localhost:3000/csrf?data=111&quot; method=&quot;post&quot; target=&quot;csrf&quot;&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line">    &lt;input id=&quot;btn&quot; type=&quot;button&quot; value=&quot;submit&quot;&gt;</span><br><span class="line">    &lt;iframe src=&quot;&quot; style=&quot;display: none;&quot; name=&quot;csrf&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">      btn.addEventListener(&#x27;click&#x27;, (e) =&gt; &#123;</span><br><span class="line">        e.preventDefault()</span><br><span class="line">        form.submit()</span><br><span class="line">      &#125;)</span><br><span class="line">    &lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
 <p>防止CSRF攻击</p>
 <blockquote>
 <ul>
@@ -124,7 +125,7 @@
     
 <nav class="article-nav">
   
-    <a href="/2018/02/05/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E9%87%8D%E7%82%B9%E5%9B%9E%E9%A1%BE6-%E6%B8%B2%E6%9F%93%E6%9C%BA%E5%88%B6%E3%80%81%E9%A1%B5%E9%9D%A2%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E3%80%81%E9%94%99%E8%AF%AF%E7%9B%91%E6%8E%A7/" id="article-nav-newer" class="article-nav-link-wrap prev">
+    <a href="../../../02/05/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E9%87%8D%E7%82%B9%E5%9B%9E%E9%A1%BE6-%E6%B8%B2%E6%9F%93%E6%9C%BA%E5%88%B6%E3%80%81%E9%A1%B5%E9%9D%A2%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E3%80%81%E9%94%99%E8%AF%AF%E7%9B%91%E6%8E%A7/" id="article-nav-newer" class="article-nav-link-wrap prev">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
@@ -134,7 +135,7 @@
     </a>
   
   
-    <a href="/2018/01/30/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E9%87%8D%E7%82%B9%E5%9B%9E%E9%A1%BE4-%E5%89%8D%E5%90%8E%E7%AB%AF%E9%80%9A%E4%BF%A1/" id="article-nav-older" class="article-nav-link-wrap next">
+    <a href="../../30/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E9%87%8D%E7%82%B9%E5%9B%9E%E9%A1%BE4-%E5%89%8D%E5%90%8E%E7%AB%AF%E9%80%9A%E4%BF%A1/" id="article-nav-older" class="article-nav-link-wrap next">
       <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">前端基础重点回顾4:前后端通信</div>
     </a>
@@ -155,7 +156,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget-body">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React-Tips/" rel="tag">React Tips</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redux/" rel="tag">Redux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/" rel="tag">css</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dom/" rel="tag">dom</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/" rel="tag">http</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sftp/" rel="tag">sftp</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/JavaScript/" rel="tag">JavaScript</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/React/" rel="tag">React</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/React-Tips/" rel="tag">React Tips</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/Redux/" rel="tag">Redux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/css/" rel="tag">css</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/dom/" rel="tag">dom</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/http/" rel="tag">http</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/sftp/" rel="tag">sftp</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -166,7 +167,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget-body">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Font-End-Basis/">Font-End Basis</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/http/">http</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/network/">network</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../../../categories/Font-End-Basis/">Font-End Basis</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/React/">React</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/Vue/">Vue</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/css/">css</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/http/">http</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/network/">network</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -180,23 +181,23 @@
       <ul>
         
           <li>
-            <a href="/2023/09/12/my-article/">my-article</a>
+            <a href="../../../../2023/09/12/my-article/">my-article</a>
           </li>
         
           <li>
-            <a href="/2018/10/28/%E7%BC%96%E5%86%99React%E7%BB%84%E4%BB%B6%E8%A6%81%E7%82%B9-%E5%8D%95%E4%B8%80%E8%B4%A3%E4%BB%BB%E5%8E%9F%E5%88%99/">编写React组件要点-单一责任原则</a>
+            <a href="../../../10/28/%E7%BC%96%E5%86%99React%E7%BB%84%E4%BB%B6%E8%A6%81%E7%82%B9-%E5%8D%95%E4%B8%80%E8%B4%A3%E4%BB%BB%E5%8E%9F%E5%88%99/">编写React组件要点-单一责任原则</a>
           </li>
         
           <li>
-            <a href="/2018/10/26/HTTP%E7%9B%B8%E5%85%B3%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86/">HTTP相关系统知识</a>
+            <a href="../../../10/26/HTTP%E7%9B%B8%E5%85%B3%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86/">HTTP相关系统知识</a>
           </li>
         
           <li>
-            <a href="/2018/04/17/JavaScript%E4%B8%AD%E7%9A%84%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/">JavaScript 中的垃圾回收</a>
+            <a href="../../../04/17/JavaScript%E4%B8%AD%E7%9A%84%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/">JavaScript 中的垃圾回收</a>
           </li>
         
           <li>
-            <a href="/2018/04/11/%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%20Vue%20(1)%20%E5%AE%9E%E7%8E%B0%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/">实现一个 Vue (1) 实现响应式原理</a>
+            <a href="../../../04/11/%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%20Vue%20(1)%20%E5%AE%9E%E7%8E%B0%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/">实现一个 Vue (1) 实现响应式原理</a>
           </li>
         
       </ul>
